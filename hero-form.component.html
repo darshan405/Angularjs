@@ -1,0 +1,49 @@
+<div [hidden]="submitted">
+  <div class="row">
+    <div class="col md-12 col xs-12 col-sm-12">
+      <h1>Welcome to app!</h1>
+    </div>
+  </div>
+  <form #detailForm="ngForm" (ngSubmit)="onSubmit(detailForm)">
+    <div class="row">
+      <div class="col md-4 col xs-4 col-sm-4">
+        <div class="well">
+          <div class="form-group">
+            <b class="clr">Name</b> 
+            <input type="text" name="name" [(ngModel)]="name" #nameRef="ngModel" class="form-control" required
+            [ngClass]="(nameRef.invalid && nameRef.touched) ? 'red' : ''">
+            <p *ngIf="(nameRef.invalid && nameRef.touched)">Name Required</p>
+          </div>
+          <div class="form-group">
+            <b class="clr">Language </b>
+            <input type="text" name="language" [(ngModel)]="language" #languageRef="ngModel" class="form-control" required
+            [ngClass]="(languageRef.invalid && languageRef.touched) ? 'red' : ''">
+            <p *ngIf="(languageRef.invalid && languageRef.touched)">Language Required</p>
+          </div>
+          <div class="row t-a-r">
+            <div class="col md-12 col xs-12 col-sm-12">
+              <button type="submit" class="btn btn-info" [disabled]="detailForm.invalid">Submit</button>
+              <button type="reset" class="btn btn-warning">reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col md-8 col xs-8 col-sm-8">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="clr">Name</th>
+              <th class="clr">lang</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let value of values">
+              <td>{{value.name}}</td>
+              <td> {{value.language}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>
